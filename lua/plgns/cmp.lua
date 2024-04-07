@@ -51,18 +51,9 @@ return {
 
 
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
-        local servers = {
-          'gopls',
-          'rust_analyzer',
-          'lua_ls',
-          'tsserver',
-          'emmet_ls',
-          'html',
-          'marksman',
-          'clangd',
-        }
+        local get_servers = require('mason-lspconfig').get_installed_servers
 
-        for _, v in ipairs(servers) do
+        for _, v in ipairs(get_servers()) do
           require('lspconfig')[v].setup {
             capabilities = capabilities
           }
